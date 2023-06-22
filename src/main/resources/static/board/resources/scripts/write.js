@@ -4,6 +4,12 @@ form['back'].addEventListener('click', () => {
     window.location.href = './qna';
 });
 
+ClassicEditor.create(form['content'], {
+     simpleUpload: {
+         uploadUrl: 'image'
+     }
+});
+
 form.onsubmit = e => {
     e.preventDefault();
 
@@ -23,6 +29,7 @@ form.onsubmit = e => {
         form['title'].focus();
         return false;
     }
+
     cover.show();
 
     const xhr = new XMLHttpRequest();
@@ -52,17 +59,3 @@ form.onsubmit = e => {
     };
     xhr.send(formData);
 };
-
-ClassicEditor.create(form['content'], {
-    simpleUpload: {
-        uploadUrl: 'image'
-    }
-});
-
-
-
-
-
-
-
-
