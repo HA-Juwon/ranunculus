@@ -152,16 +152,18 @@ modifyProductForm.onsubmit = e =>{
     }
 
     const xhr = new XMLHttpRequest();
+
     const formData = new FormData();
     formData.append('prodName',addProductForm['prodName'].value);
-
     formData.append('costPrice',addProductForm['costPrice'].value);
     formData.append('prodCapacity',addProductForm['prodCapacity'].value)
     formData.append('prodCategory',addProductForm['prodCategory'].value);
     formData.append('netPrice',addProductForm['netPrice'].value);
     formData.append('prodImage',addProductForm['prodImage'].files[0]);
     formData.append('prodDetailImage',addProductForm['prodDetailImage'].files[0]);
+
     formData.append('stock',addProductForm['stock'].value);
+
 
     xhr.open('POST', './modifyProdDetail/'+id);
     // console.log()
@@ -190,3 +192,28 @@ modifyProductForm.onsubmit = e =>{
 }
 
 
+//TODO: 기존의 이미지를 기본값으로 설정하는 코드. 퍼오기만 한 상태임. 수정 필요
+
+
+function loadURLToInputFiled(url){
+    getImgURL(url, (imgBlob)=>{
+        // Load img blob to input
+        // WIP: UTF8 character error
+        let fileName = 'hasFilename.jpg'
+        let file = new File([imgBlob], fileName,{type:"image/jpeg", lastModified:new Date().getTime()}, 'utf-8');
+        let container = new DataTransfer();
+        container.items.add(file);
+        document.querySelector('#file_input').files = container.files;
+    })
+}
+
+// xmlHTTP return blob respond
+function getImgURL(url, callback){
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        callback(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+}

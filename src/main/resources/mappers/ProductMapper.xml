@@ -52,7 +52,7 @@
         SELECT `index` AS `index`,
                `name` AS `name`,
                `image` AS `image`,
-               `image_mime` AS `image`,
+               `image_mime` AS `imageMime`,
                `capacity` AS `capacity`
         from `ranunculus_products`.products
         order by `index` DESC
