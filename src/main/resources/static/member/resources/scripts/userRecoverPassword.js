@@ -45,6 +45,8 @@ function resetPassword(){
                 // cover.hide();
                 if (xhr.status >= 200 && xhr.status < 300) {
                     const responseJson = JSON.parse(xhr.responseText);
+
+                    console.log("bbb"+responseJson['result']);
                     switch (responseJson['result']) {
                         case 'success':
                             resetPasswordForm.classList.remove('visible');
@@ -221,6 +223,7 @@ recoverPasswordForm.onsubmit = e =>{
             // console.log('되나?');
             if (xhr.status >= 200 && xhr.status < 300) {
                 const responseJson = JSON.parse(xhr.responseText);
+                console.log("aaaa"+responseJson['result'])
                 switch (responseJson['result']) {
                     case 'success':
                         recoverPasswordForm.classList.remove('visible');

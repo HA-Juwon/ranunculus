@@ -38,6 +38,7 @@ resetPasswordForm.onsubmit = e => {
             // cover.hide();
              if (xhr.status >= 200 && xhr.status < 300) {
                  const responseJson = JSON.parse(xhr.responseText);
+                 console.log(responseJson['result']);
                  switch (responseJson['result']) {
                      case 'success':
                          resetPasswordForm.classList.remove('visible');
